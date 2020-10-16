@@ -1,0 +1,19 @@
+﻿@model TopicAndMsgsViewModel
+
+@{
+    
+}
+
+<div>
+    <form method="post">
+        <div>
+            <label>Title </label>
+            <input asp-for="Topic.Title" />
+        </div>
+        <div>
+            <label>Topic Description: </label>
+            <input asp-for="Topic.TopicBody" />
+        </div>
+        <input type="submit" value="Create"/>
+    </form>
+</div>

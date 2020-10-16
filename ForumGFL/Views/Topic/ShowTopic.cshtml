@@ -1,0 +1,29 @@
+﻿@model TopicAndMsgsViewModel
+
+@{
+
+}
+
+<div>
+    <label>@Model.Topic.Title</label>
+
+    <p>@Model.Topic.TopicBody</p>
+
+</div>
+
+<div>
+    <ul>
+        @foreach (var message in Model.Messages)
+        {
+            <li>
+                <div>@message.MessageBody</div>
+                @if (Model.context.User.Identity.Name.Equals(message.Author))
+                {
+                    <div><a asp-controller="Topic" asp-action="EditMessage" asp-route-id="@message.Id">Edit this message</a></div>
+                }
+                <div>@message.Author</div>
+                <div><label>Last updated on @message.LastUpdated</label></div>
+            </li>
+        }
+    </ul>
+</div>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Topic>
+
+@{
+
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Forum homepage!</h1>
+</div>
+
+<div>
+    <ul>
+        @foreach(var topic in Model)
+        {
+        <li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div>
+                    <a asp-controller="Topic" asp-action="ShowTopic" asp-route-id="@topic.Id">
+                        @topic.Title
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div>
+                    <label>@topic.Title</label> ---
+                    <a asp-controller="Auth" asp-action="Login">Log In</a> or <a asp-controller="Auth" asp-action="Register">Register</a> before viewing a thread!
+                </div>
+            }
+            
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a type="submit" asp-controller="Topic" asp-action="RemoveTopic" asp-route-id="@topic.Id">Remove Topic</a>
+                        </li>
+                    </ul>
+                </div>
+            }
+        </li>
+        }
+    </ul>
+ </div>

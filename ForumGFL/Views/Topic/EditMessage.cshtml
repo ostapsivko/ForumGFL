@@ -1,0 +1,20 @@
+﻿@model TopicAndMsgsViewModel
+
+@{
+
+}
+
+<div>
+    <form method="post">
+        <input type="hidden" asp-for="@Model.Message.Id" />
+        <input type="hidden" asp-for="@Model.Message.TopicId" />
+        <input type="hidden" asp-for="@Model.Message.Created" />
+        <input type="hidden" asp-for="@Model.Message.Author" />
+        <div>
+            <label>Your Message </label>
+            <input asp-for="Message.MessageBody" />
+        </div>
+        <input type="submit" value="Save" asp-controller="Topic" asp-action="EditMessage" asp-route-id="@Model.Message.Id" />
+        <input type="submit" value="Done" asp-controller="Topic" asp-action="ShowTopic" asp-route-id="@Model.Message.TopicId" />
+    </form>
+</div>
